@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How to set up settings</title>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>How to set up settings</h1>
+
+    <p>The following properties can be and must be used in a setting object.</p>
+
+    <ul>
+      <li><strong>name</strong> (string): name of trigger, should be unique</li>
+      <li><strong>subject</strong> (string): subject template of alert email</li>
+      <li><strong>emailBodyType</strong> (enum): 
+        <ul>
+          <li><i>SimpleHtml</i> = HTML string defined in GS file</li>
+          <li><i>GoogleDoc</i> = a Google Doc</li>
+        </ul>
+      </li>
+      <li><strong>emailBody</strong> (HTML string): HTML template in case of EmailBodyType.SimpleHtml</li>
+      <li><strong>googleDocId</strong> (string/id): Google Doc id to use as email template in case of EmailBodyType.GoogleDoc</li>
+      <li><strong>urlToCheck</strong> (string/URL): URL of webpage to check</li>
+      <li><strong>emailAddresses</strong> (JSON array of strings): email addresses to alert in case of webpage change</li>
+      <li><strong>checkIntervalUnit</strong> (enum): 
+        <ul>
+          <li><i>Hour</i> = schedule will be hour based</li>
+          <li><i>Minute</i> = schedule will be minute based</li>
+        </ul>
+      </li>
+      <li><strong>checkInterval</strong> (int): schedule interval
+        <ul>
+          <li><i>Hour</i> = can be only 1, 2, 4, 6, 8 or 12</li>
+          <li><i>Minute</i> = can be only 1, 5, 10, 15 or 30</li>
+        </ul>
+      </li>
+      <li><strong>stripHtml</strong> (bool): should strip out HTML tags from the webpage and check only the content (<i>true</i>) or check the original page as full HTML (<i>false</i>)</li>
+    </ul>
+  </body>
+</html>

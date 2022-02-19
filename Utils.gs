@@ -1,0 +1,72 @@
+/**
+ * Sends a simple HTML email
+ * 
+ * @param {string} subject - Subject template of email
+ * @param {string} emailBody - Email body template
+ * @param {JSON} emailAddresses - Email addresses to send the email to
+ * @param {string} name - Name of alert
+ * @param {string} urlToCheck - URL checked
+ */
+function sendAlertEmail(subject, emailBody, emailAddresses, name, urlToCheck) {
+  subject = subject.replace('{name}', name);
+  subject = subject.replace('{urlToCheck}', urlToCheck);
+  
+  emailBody = emailBody.replace('{name}', name);
+  emailBody = emailBody.replace('{urlToCheck}', urlToCheck);
+  
+  for (var i = 0; i < emailAddresses.length; i++) {
+    Logger.log("Send email to " + emailAddresses[i]);
+    var message = {
+      to: emailAddresses[i],
+      subject: subject,
+      htmlBody: emailBody.replace("{emailAddress}", emailAddresses[i]),
+      name: name
+    };
+    
+    MailApp.sendEmail(message);
+  }
+}
+
+/**
+ * Sends an HTML email based on a Google document
+ * 
+ * @param {string} subject - Subject template of email
+ * @param {string} googleDocId - Google document id used for email body template
+ * @param {JSON} emailAddresses - Email addresses to send the email to
+ * @param {string} name - Name of alert
+ * @param {string} urlToCheck - URL checked
+ */
+function sendGoogleDocAlertEmail(subject, googleDocId, emailAddresses, name, urlToCheck) {
+  var emailTemplate = ConvertGoogleDocToCleanHtml(googleDocId);
+  var htmlEmail = convertToHtmlEmail(emailTemplate.html, emailTemplate.images);
+
+  subject = subject.replace('{name}', name);
+  subject = subject.replace('{urlToCheck}', urlToCheck);
+  
+  htmlEmail = htmlEmail.replace('{name}', name);
+  htmlEmail = htmlEmail.replace('{urlToCheck}', urlToCheck);
+
+  for (var i = 0; i < emailAddresses.length; i++) {
+    MailApp.sendEmail({
+      to: emailAddresses[i],
+      subject: subject,
+      htmlBody: emailTemplate.html.replace("{emailAddress}", emailAddresses[i]),
+      inlineImages: htmlEmail.inlineImages,
+      attachments: htmlEmail.attachments,
+    });
+  }
+}
+
+/**
+ * Calculates MD5 string
+ * 
+ * @param {string} input - String to encode
+ * 
+ * Based on https://stackoverflow.com/questions/16216868/get-back-a-string-representation-from-computedigestalgorithm-value-byte
+ */
+function computeMd5String(input) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, input).reduce(function(input,chr){
+    chr = (chr < 0 ? chr + 256 : chr).toString(16);
+    return input + (chr.length==1?'0':'') + chr;
+  },'');
+}
