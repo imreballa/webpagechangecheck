@@ -29,7 +29,7 @@ var settings =
     "emailBody" : emailBody,
     "urlToCheck" : "https://github.com/imreballa/webpagechangecheck/",
     "emailAddresses" : [ "ballaimre@gmail.com" ],
-    "checkInterval" : 24,
+    "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
     "stripHtml" : true,
   }
