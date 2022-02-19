@@ -10,6 +10,11 @@ var EmailBodyType = {
   "SimpleHtml" : "simplehtml",
 };
 
+/**
+ * Don't change anything above this line,
+ * unless you know what you are doing!
+ */
+
 // Email subject
 var subject = "Change warning - {name}";
 
@@ -34,6 +39,11 @@ var settings =
     "stripHtml" : true,
   }
 ];
+
+/**
+ * Don't change anything below this line,
+ * unless you know what you are doing!
+ */
 
 /**
  * Creates all triggers, thus installing the script.
