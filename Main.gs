@@ -1,3 +1,6 @@
+/**
+ * https://github.com/imreballa/webpagechangecheck/
+ */
 // Fake enum for check interval measures
 var CheckIntervalUnit = {
   "Hour" : "hour",
@@ -33,7 +36,7 @@ var settings =
     "emailBodyType" : EmailBodyType.SimpleHtml,
     "emailBody" : emailBody,
     "urlToCheck" : "https://github.com/imreballa/webpagechangecheck/",
-    "emailAddresses" : [ "ballaimre@gmail.com" ],
+    "emailAddresses" : [ ],
     "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
     "stripHtml" : true,
