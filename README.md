@@ -1,5 +1,6 @@
 # WebpageChangeCheck based on Google Apps Script
 
+Setup
 1. Edit email subject in Main.gs, see HowToUseTemplate.html
 2. Edit emailBody in Main.gs, see HowToUseTemplate.html
 3. Set up settings in Main.gs, see HowToSetupSettings.html
