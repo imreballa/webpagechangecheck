@@ -47,6 +47,8 @@ function sendGoogleDocAlertEmail(subject, googleDocId, emailAddresses, name, url
   emailTemplate.html = emailTemplate.html.replace('{urlToCheck}', urlToCheck);
 
   for (var i = 0; i < emailAddresses.length; i++) {
+    Logger.log("Send email to " + emailAddresses[i]);
+
     MailApp.sendEmail({
       to: emailAddresses[i],
       subject: subject,
