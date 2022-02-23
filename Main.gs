@@ -36,9 +36,33 @@ var settings =
     "emailBodyType" : EmailBodyType.SimpleHtml,
     "emailBody" : emailBody,
     "urlToCheck" : "https://github.com/imreballa/webpagechangecheck/",
-    "emailAddresses" : [ ],
+    "emailAddresses" : [ "ballaimre@gmail.com" ],
     "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
+    "stripHtml" : true,
+  },
+  /*
+  {
+    "name" : "Érdi Újság",
+    "subject" : subject,
+    "emailBodyType" : EmailBodyType.SimpleHtml,
+    "emailBody" : emailBody,
+    "urlToCheck" : "https://www.erd.hu/a-mi-varosunk/media/erdiujsag_web_09/2022.-ev/erdi-ujsag-2022",
+    "emailAddresses" : [ "ballaimre@gmail.com", "sule.zsolt64@gmail.com" ],
+    "checkInterval" : 6,
+    "checkIntervalUnit" : CheckIntervalUnit.Hour,
+    "stripHtml" : true,
+  },
+  */
+  {
+    "name" : "Érdi Vízművek",
+    "subject" : subject,
+    "emailBodyType" : EmailBodyType.SimpleHtml,
+    "emailBody" : emailBody,
+    "urlToCheck" : "https://www.erdivizmuvek.hu/havaria",
+    "emailAddresses" : [ "ballaimre@gmail.com", "sule.zsolt64@gmail.com" ],
+    "checkInterval" : 15,
+    "checkIntervalUnit" : CheckIntervalUnit.Minute,
     "stripHtml" : true,
   }
 ];

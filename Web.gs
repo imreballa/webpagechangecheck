@@ -17,15 +17,14 @@ function checkWebpage(name, urlToCheck, stripHtml) {
 
   // Encode content
   var newPageEncoded = computeMd5String(result);
-  Logger.log("New page encoded to length: " + newPageEncoded.length);
 
   // Check previous value
   var oldPageEncoded = PropertiesService.getScriptProperties().getProperty(name);
+  Logger.log("Old checksum: " + oldPageEncoded + ", new checksum: " + newPageEncoded);
 
   // Save current value
   PropertiesService.getScriptProperties().setProperty(name, newPageEncoded);
-
-  Logger.log(oldPageEncoded);
+ 
   if(oldPageEncoded != newPageEncoded) {
     Logger.log(name + " different pages");
     return true;
