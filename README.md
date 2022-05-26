@@ -10,3 +10,4 @@ Thanks to
 - mikegreiling for the MD5 function (https://stackoverflow.com/questions/16216868/get-back-a-string-representation-from-computedigestalgorithm-value-byte)
 - Marcono1234 for trigger parameter handling (https://stackoverflow.com/questions/32697653/how-can-i-pass-a-parameter-to-a-time-based-google-app-script-trigger)
 - thejimbirch for the Google doc to HTML converter (https://github.com/thejimbirch/GoogleDoc2Html)
+- tani for the script for parsing HTML (https://github.com/tani/cheeriogs)

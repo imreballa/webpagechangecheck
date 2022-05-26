@@ -13,6 +13,12 @@ var EmailBodyType = {
   "SimpleHtml" : "simplehtml",
 };
 
+// Fake enum for HTML page check
+var HtmlCheckType = {
+  "FullPage" : "fullpage",
+  "PartOfPage" : "partofpage",
+};
+
 /**
  * Don't change anything above this line,
  * unless you know what you are doing!
@@ -24,6 +30,7 @@ var subject = "Change warning - {name}";
 // Email body for simple HTML
 var emailBody = "The following page content changed: {name} <br />\
 URL: {urlToCheck} <br />\
+Content: {content} <br />\
 Email sent to: {emailAddress}<br />";
 
 // Settings
@@ -36,35 +43,12 @@ var settings =
     "emailBodyType" : EmailBodyType.SimpleHtml,
     "emailBody" : emailBody,
     "urlToCheck" : "https://github.com/imreballa/webpagechangecheck/",
-    "emailAddresses" : [ "ballaimre@gmail.com" ],
+    "emailAddresses" : [  ],
     "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
     "stripHtml" : true,
+    "htmlCheckType" : HtmlCheckType.FullPage,    
   },
-  /*
-  {
-    "name" : "Érdi Újság",
-    "subject" : subject,
-    "emailBodyType" : EmailBodyType.SimpleHtml,
-    "emailBody" : emailBody,
-    "urlToCheck" : "https://www.erd.hu/a-mi-varosunk/media/erdiujsag_web_09/2022.-ev/erdi-ujsag-2022",
-    "emailAddresses" : [ "ballaimre@gmail.com", "sule.zsolt64@gmail.com" ],
-    "checkInterval" : 6,
-    "checkIntervalUnit" : CheckIntervalUnit.Hour,
-    "stripHtml" : true,
-  },
-  */
-  {
-    "name" : "Érdi Vízművek",
-    "subject" : subject,
-    "emailBodyType" : EmailBodyType.SimpleHtml,
-    "emailBody" : emailBody,
-    "urlToCheck" : "https://www.erdivizmuvek.hu/havaria",
-    "emailAddresses" : [ "ballaimre@gmail.com", "sule.zsolt64@gmail.com" ],
-    "checkInterval" : 15,
-    "checkIntervalUnit" : CheckIntervalUnit.Minute,
-    "stripHtml" : true,
-  }
 ];
 
 /**

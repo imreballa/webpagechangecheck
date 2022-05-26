@@ -82,6 +82,18 @@ function checkSettings(settings) {
       Logger.log(setting.name + ": at least one email address is mandatory!");
       result = false;      
     }
+
+    // HTML validation type 
+    if(setting.htmlCheckType == null) {
+      Logger.log(setting.name + ": HTML validation type is mandatory!");
+      result = false;      
+    }
+
+    if(setting.htmlCheckType == HtmlCheckType.PartOfPage 
+        && (setting.cssSelector == null || setting.cssSelector == "")) {
+      Logger.log(setting.name + ": CssSelector should be set up for PartOfType HTML validation!");
+      result = false;      
+    }
   });
 
   return result;

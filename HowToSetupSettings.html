@@ -35,6 +35,14 @@
         </ul>
       </li>
       <li><strong>stripHtml</strong> (bool): should strip out HTML tags from the webpage and check only the content (<i>true</i>) or check the original page as full HTML (<i>false</i>)</li>
+      <li><strong>htmlCheckType</strong> (enum): 
+        <ul>
+          <li><i>FullPage</i> = full page content will be validated</li>
+          <li><i>PartOfPage</i> = only part of page selected by CSS selector will be validated</li>
+        </ul>
+      </li>
+      <li><strong>cssSelector</strong> (string): CSS selector in case of htmlCheckType.PartOfPage
+      </li>
     </ul>
   </body>
 </html>
