@@ -15,6 +15,8 @@ function startCheck(event) {
 
   // Webpage content changed
   if(webpageChanged.result) {
+    webpageChanged.content = webpageChanged.content('\r', "<br />");
+    
     // Send a simple HTML based email
     if(setting.emailBodyType == EmailBodyType.SimpleHtml) {
       sendAlertEmail(setting.subject, setting.emailBody, setting.emailAddresses, setting.name, setting.urlToCheck, webpageChanged.content);

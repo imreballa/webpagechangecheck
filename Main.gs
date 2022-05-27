@@ -29,9 +29,9 @@ var subject = "Change warning - {name}";
 
 // Email body for simple HTML
 var emailBody = "The following page content changed: {name} <br />\
-URL: {urlToCheck} <br />\
-Content: {content} <br />\
-Email sent to: {emailAddress}<br />";
+URL: {urlToCheck} <br /><br />\
+Email sent to: {emailAddress}<br /><br />\
+Content: {content} <br />";
 
 // Settings
 // See HowToSetupSettings.html!
@@ -43,7 +43,7 @@ var settings =
     "emailBodyType" : EmailBodyType.SimpleHtml,
     "emailBody" : emailBody,
     "urlToCheck" : "https://github.com/imreballa/webpagechangecheck/",
-    "emailAddresses" : [  ],
+    "emailAddresses" : [ ],
     "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
     "stripHtml" : true,
