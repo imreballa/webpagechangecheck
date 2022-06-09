@@ -15,7 +15,7 @@ function startCheck(event) {
 
   // Webpage content changed
   if(webpageChanged.result) {
-    webpageChanged.content = webpageChanged.content('\r', "<br />");
+    webpageChanged.content = webpageChanged.content.replace('\r', "<br />");
     
     // Send a simple HTML based email
     if(setting.emailBodyType == EmailBodyType.SimpleHtml) {
