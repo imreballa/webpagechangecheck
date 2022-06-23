@@ -6,13 +6,15 @@
  * @param {JSON} emailAddresses - Email addresses to send the email to
  * @param {string} name - Name of alert
  * @param {string} urlToCheck - URL checked
+ * @param {string} content - full HTML content checked
  */
-function sendAlertEmail(subject, emailBody, emailAddresses, name, urlToCheck) {
+function sendAlertEmail(subject, emailBody, emailAddresses, name, urlToCheck, content) {
   subject = subject.replace('{name}', name);
   subject = subject.replace('{urlToCheck}', urlToCheck);
   
   emailBody = emailBody.replace('{name}', name);
   emailBody = emailBody.replace('{urlToCheck}', urlToCheck);
+  emailBody = emailBody.replace('{content}', content);
   
   for (var i = 0; i < emailAddresses.length; i++) {
     Logger.log("Send email to " + emailAddresses[i]);
@@ -35,8 +37,9 @@ function sendAlertEmail(subject, emailBody, emailAddresses, name, urlToCheck) {
  * @param {JSON} emailAddresses - Email addresses to send the email to
  * @param {string} name - Name of alert
  * @param {string} urlToCheck - URL checked
+ * @param {string} content - full HTML content checked
  */
-function sendGoogleDocAlertEmail(subject, googleDocId, emailAddresses, name, urlToCheck) {
+function sendGoogleDocAlertEmail(subject, googleDocId, emailAddresses, name, urlToCheck, content) {
   var emailTemplate = ConvertGoogleDocToCleanHtml(googleDocId);
   var htmlEmail = convertToHtmlEmail(emailTemplate.html, emailTemplate.images);
 
@@ -45,6 +48,7 @@ function sendGoogleDocAlertEmail(subject, googleDocId, emailAddresses, name, url
   
   emailTemplate.html = emailTemplate.html.replace('{name}', name);
   emailTemplate.html = emailTemplate.html.replace('{urlToCheck}', urlToCheck);
+  emailTemplate.html = emailTemplate.html.replace('{content}', content);
 
   for (var i = 0; i < emailAddresses.length; i++) {
     Logger.log("Send email to " + emailAddresses[i]);

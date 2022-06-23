@@ -13,6 +13,12 @@ var EmailBodyType = {
   "SimpleHtml" : "simplehtml",
 };
 
+// Fake enum for HTML page check
+var HtmlCheckType = {
+  "FullPage" : "fullpage",
+  "PartOfPage" : "partofpage",
+};
+
 /**
  * Don't change anything above this line,
  * unless you know what you are doing!
@@ -23,8 +29,9 @@ var subject = "Change warning - {name}";
 
 // Email body for simple HTML
 var emailBody = "The following page content changed: {name} <br />\
-URL: {urlToCheck} <br />\
-Email sent to: {emailAddress}<br />";
+URL: {urlToCheck} <br /><br />\
+Email sent to: {emailAddress}<br /><br />\
+Content: {content} <br />";
 
 // Settings
 // See HowToSetupSettings.html!
@@ -40,7 +47,8 @@ var settings =
     "checkInterval" : 12,
     "checkIntervalUnit" : CheckIntervalUnit.Hour,
     "stripHtml" : true,
-  }
+    "htmlCheckType" : HtmlCheckType.FullPage,    
+  },
 ];
 
 /**

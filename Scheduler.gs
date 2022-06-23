@@ -11,18 +11,20 @@ function startCheck(event) {
 
   // Start webpage check
   Logger.log(setting.urlToCheck);
-  var webpageChanged = checkWebpage(setting.name, setting.urlToCheck, setting.stripHtml);
+  var webpageChanged = checkWebpage(setting.name, setting.urlToCheck, setting.stripHtml, setting.htmlCheckType, setting.cssSelector);
 
   // Webpage content changed
-  if(webpageChanged) {
+  if(webpageChanged.result) {
+    webpageChanged.content = webpageChanged.content.replace('\r', "<br />");
+    
     // Send a simple HTML based email
     if(setting.emailBodyType == EmailBodyType.SimpleHtml) {
-      sendAlertEmail(setting.subject, setting.emailBody, setting.emailAddresses, setting.name, setting.urlToCheck);
+      sendAlertEmail(setting.subject, setting.emailBody, setting.emailAddresses, setting.name, setting.urlToCheck, webpageChanged.content);
     }
 
     // Send an HTML email based on a Google document
     if(setting.emailBodyType == EmailBodyType.GoogleDoc) {
-      sendGoogleDocAlertEmail(setting.subject, setting.googleDocId, setting.emailAddresses, setting.name, setting.urlToCheck);
+      sendGoogleDocAlertEmail(setting.subject, setting.googleDocId, setting.emailAddresses, setting.name, setting.urlToCheck, webpageChanged.content);
     }
   }
 

@@ -3,12 +3,20 @@
  * 
  * @param {string} name - Webpage name
  * @param {string} urlToCheck - Webpage address to check for changes
- * @param {bool} stripHtml - SHall we cut out all HTML and check only content or not
+ * @param {bool} stripHtml - Shall we cut out all HTML and check only content or not
+ * @param {enum} htmlCheckType - HTML validation method
+ * @param {string} cssSelector - CSS selector in case of HtmlCheckType.PartOfPage
  */
-function checkWebpage(name, urlToCheck, stripHtml) {
+function checkWebpage(name, urlToCheck, stripHtml, htmlCheckType, cssSelector) {
   // Download the page itself
   var result = fetchUrl(urlToCheck);
   Logger.log("Checking " + urlToCheck + " with result length " + result.length);
+
+  // Validation type
+  if(htmlCheckType == HtmlCheckType.PartOfPage) {
+    var htmlDoc = Cheerio.load(result);
+    result = htmlDoc(cssSelector).first().text();
+  }
 
   // Strip out html tags and check only actual content
   if(stripHtml) {
@@ -17,22 +25,33 @@ function checkWebpage(name, urlToCheck, stripHtml) {
 
   // Encode content
   var newPageEncoded = computeMd5String(result);
-  Logger.log("New page encoded to length: " + newPageEncoded.length);
 
   // Check previous value
   var oldPageEncoded = PropertiesService.getScriptProperties().getProperty(name);
+  Logger.log("Old checksum: " + oldPageEncoded + ", new checksum: " + newPageEncoded);
 
   // Save current value
   PropertiesService.getScriptProperties().setProperty(name, newPageEncoded);
-
-  Logger.log(oldPageEncoded);
+ 
   if(oldPageEncoded != newPageEncoded) {
     Logger.log(name + " different pages");
-    return true;
+
+    var retVal = {
+      result: true,
+      content: result,
+    };
+
+    return retVal;
   }
   else {
     Logger.log(name + " no change.")
-    return false;
+
+    var retVal = {
+      result: false,
+      content: result,
+    };
+    
+    return retVal;
   }
 }
 
